@@ -6,7 +6,9 @@
 #define EXIT "exit"
 #define CLEAR "clear"
 #define CAT "cat"
-#define SUM "topla"
+#define SUM "toplam"
+#define PRIME "asal"
+#define PALINDROM "palindrom"
 
 
 char *newargv[3];
@@ -23,8 +25,8 @@ void initializeNewargv(char c1[],char c2[],char c3[]){
 int main(int argc,char *argv[],char ** envp){
 	
 	while(1){
-		memset(&KOMUT[0], 0, sizeof(KOMUT));//KOMUT arrayini temizledik
-    	printf("myshell>>");
+		memset(&KOMUT[0], 0, sizeof(KOMUT));//KOMUT arrayini yeni komut için temizledik
+    	printf("myshell>>");				//her komuttan sonra bu islem zorunlu
 		getline(&data,&buffersize,stdin);	
 		splitWords(data);
 		if(equals(KOMUT,EXIT)){
@@ -43,11 +45,23 @@ int main(int argc,char *argv[],char ** envp){
 				initializeNewargv(ARG1,ARG2,NULL);
 				i = execv(SUM,newargv);
 				perror("execve failed!");
-			}else {
+			}else if(equals(KOMUT,PRIME)){
+				initializeNewargv(ARG1,NULL,NULL);
+				i = execv(PRIME,newargv);
+				perror("execve failed!");
+			}else if(equals(KOMUT,PALINDROM)){		
+			   	
+				initializeNewargv(ARG1,NULL,NULL);
+				i = execv(PALINDROM,newargv);
+				perror("execve failed!");
+			}
+			else {
 				printf("komut bulunamadı!\n");		
 			}
 		}
-		else{wait(&i);}
+		else{
+			wait(&i);
+		}
 	}
    
 	return 0;

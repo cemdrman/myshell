@@ -1,5 +1,5 @@
-#include<stdio.h>
-#include"string.h"
+#include <stdio.h>
+#include "string.h"
 #define buffer_size 50
 
 char KOMUT[buffer_size];

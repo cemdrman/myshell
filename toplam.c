@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "utilFunctions.h"
 
-int main(int argc,char *argv[],char ** envp){
+int main(int argc,char *argv[],char **envp){
 	int altLimit = stringToInt(argv[0]);
 	int ustLimit = stringToInt(argv[1]);
 	int diziSinir = (ustLimit - altLimit) + 1;
@@ -18,16 +18,12 @@ int main(int argc,char *argv[],char ** envp){
 		counter++;
 	}
 	
-	for (j = 0; j < diziSinir-1; j++)	{
-
-		if (j < diziSinir){
+	for (j = 0; j < diziSinir; j++){
+		if (j < diziSinir - 1){
 			printf("%d + ",numberList[j]);
-		}else if(j == diziSinir -1){
-			printf("%d",numberList[j]);
-		}else{
-			printf(" = %d\n",total);
-		}
-		
+		}else if(diziSinir == j + 1){
+			printf("%d = %d\n",numberList[j],total);
+		}		
 	}
 	
 	return 0;
